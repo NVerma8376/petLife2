@@ -112,6 +112,9 @@ def logout():
 def chat():
     return render_template('Ai_vet.html')
 
+@app.route('/vaccination', methods=["POST", "GET"])
+def vaccination():
+    return render_template('vaccination.html')
 
 @app.route('/get_response', methods=['POST'])
 def get_bot_response():
