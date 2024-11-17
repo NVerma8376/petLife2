@@ -88,3 +88,25 @@ body {
         padding: 15px;
     }
 }
+
+
+.home-button {
+    background-color: purple;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    position: absolute;
+    left: 0px; /* Move the button slightly to the right */
+    top: 0px;  /* Set a distance from top */
+    transition: background-color 0.3s;
+}
+
+.home-button:hover {
+    background-color: #f9f9fa;
+    color: #000;
+}

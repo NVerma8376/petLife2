@@ -5,10 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="static/features.js" defer></script>
   <title>Features</title>
+  <link rel="icon" href="logo.ico">
   <link rel="stylesheet" href="static/styles/features.css">
   <script src="https://kit.fontawesome.com/a08d56a4cb.js" crossorigin="anonymous"></script>
+  <style>
+    home-button {
+    background-color: #D4B4FF;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    position: absolute;
+    left: 285px; /* Move the button slightly to the right */
+    top: 20px;  /* Set a distance from top */
+    transition: background-color 0.3s;
+}
+  </style>
 </head>
 <body>
+  <button class="home-button" onclick="window.location.href='/'">PetLive</button>
   <div class="loader-overlay">
     <div class="loader"></div>
   </div>
