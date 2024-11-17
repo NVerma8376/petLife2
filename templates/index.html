@@ -60,8 +60,12 @@
         <li><a href="/train">Train</a></li>
       </ul>
       <div class="buttons">
-        <a href="/login"><input type="button" value="Login"></a>
-        <a href="/signup"><input type="button" value="Register"></a>
+        {% if logged_in %}
+          <a href="/logout"><input type="button" value="Logout"></a>
+        {% else %}
+          <a href="/login"><input type="button" value="Login"></a>
+          <a href="/signup"><input type="button" value="Register"></a>
+        {% endif %}
       </div>
     </nav>
     <div class="text-content">
@@ -74,7 +78,7 @@
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.body.classList.add("loaded");
-      }, 250);
+      }, 1500);
     });
   </script>
 </body>

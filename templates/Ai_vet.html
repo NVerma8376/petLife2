@@ -20,46 +20,54 @@
     <!-- Place your JavaScript in a separate file or here with defer -->
     <script>
 
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                document.body.classList.add("loaded");
-            }, 250);
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.body.classList.add("loaded");
+    }, 1500);
+});
+
+// Function to send the user's message to the server
+async function sendMessage() {
+    const userMessage = document.getElementById('userMessage').value;
+    if (!userMessage) return;
+
+    // Append the user message to the chat window
+    const messages = document.getElementById('messages');
+    messages.innerHTML += `<div class="user-message"><strong></strong> ${userMessage}</div>`;
+    document.getElementById('userMessage').value = '';
+
+    // Send the message to the backend using fetch API
+    try {
+        const response = await fetch('/get_response', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ msg: userMessage })
         });
 
-        // Function to send the user's message to the server
-        async function sendMessage() {
-            const userMessage = document.getElementById('userMessage').value;
-            if (!userMessage) return;
-
-            // Append the user message to the chat window
-            const messages = document.getElementById('messages');
-            messages.innerHTML += `<div class="user-message"><strong>You:</strong> ${userMessage}</div>`;
-            document.getElementById('userMessage').value = '';
-
-            // Send the message to the backend using fetch API
-            try {
-                const response = await fetch('/get_response', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ msg: userMessage })
-                });
-
-                const data = await response.json();
-                if (data.response) {
-                    messages.innerHTML += `<div class="bot-message"><strong>Bot:</strong> ${data.response}</div>`;
-                } else if (data.error) {
-                    messages.innerHTML += `<div class="bot-message error"><strong>Bot:</strong> Error: ${data.error}</div>`;
-                }
-
-                // Scroll to the bottom of the messages window
-                messages.scrollTop = messages.scrollHeight;
-            } catch (error) {
-                console.error('Error:', error);
-                messages.innerHTML += `<div class="bot-message error"><strong>Bot:</strong> Sorry, there was an error processing your message.</div>`;
-            }
+        const data = await response.json();
+        if (data.response) {
+            messages.innerHTML += `<div class="bot-message"><strong></strong> ${data.response}</div>`;
+        } else if (data.error) {
+            messages.innerHTML += `<div class="bot-message error"><strong></strong> Error: ${data.error}</div>`;
         }
+
+        // Scroll to the bottom of the messages window
+        messages.scrollTop = messages.scrollHeight;
+    } catch (error) {
+        console.error('Error:', error);
+        messages.innerHTML += `<div class="bot-message error"><strong></strong> Sorry, there was an error processing your message.</div>`;
+    }
+}
+
+// Listen for Enter key press in the input field
+document.getElementById('userMessage').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
     </script>
 </body>
 </html>
