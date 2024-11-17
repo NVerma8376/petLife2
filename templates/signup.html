@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .loader-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(255, 255, 255, 0.9);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+    
+        .loader {
+          width: 50px;
+          height: 50px;
+          border: 5px solid violet;
+          border-top: 5px solid #000;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+    
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+    
+        body.loaded .loader-overlay {
+          display: none;
+        }
+    </style>
+    <body>
+        <!-- Loader Overlay -->
+        <div class="loader-overlay">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Form Section -->
+        <form method="post">
+            <input type="text" name="Name" placeholder="Name">
+            <input type="text" name="Pet" placeholder="Pet Name">
+            <input type="text" name="Phone" placeholder="Phone">
+            <input type="text" name="Email" placeholder="Email">
+            <input type="text" name="Password" placeholder="Password">
+
+            <input type="submit" name="bloh">
+        </form>
+        
+        <a href="/login"><input type="submit" name="login" value="Already have an account? Login"></a>
+
+        <script>
+            window.addEventListener("load", () => {
+              setTimeout(() => {
+                document.body.classList.add("loaded");
+              }, 250);
+            });
+        </script>
+    </body>
+</html>
